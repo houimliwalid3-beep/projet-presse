@@ -24,8 +24,10 @@
 </template>
 
 <script setup>
-// Aucun state nécessaire ici
+import BoutonFav from './boutonFav.vue'
 </script>
+
+
 
 <style scoped>
 .container {

@@ -7,7 +7,8 @@
         <div class="col-md-6">
           <ul class="nav justify-content-center">
             <li class="nav-item" v-for="(link, i) in links" :key="i">
-              <a :href="link.href" class="nav-link text-dark">{{ link.text }}</a>
+              <router-link v-if="link.to" :to="link.to" class="nav-link text-dark">{{ link.text }}</router-link>
+              <a v-else :href="link.href" class="nav-link text-dark">{{ link.text }}</a>
             </li>
           </ul>
         </div>
@@ -82,8 +83,8 @@ import { ref, watchEffect } from 'vue'
 const Titre = 'Mon Site'
 
 const links = [
-  { text: 'Accueil', href: '#' },
-  { text: 'Favoris', href: '#' },
+  { text: 'Accueil', to: '/' },
+  { text: 'Favoris', to: '/favoris' },
   { text: 'Formulaire', href: '#' },
   { text: 'A Propos', href: '#' }
 ]

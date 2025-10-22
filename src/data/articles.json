@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1001,
+    "title": "Les bases de Vue.js 3 : un guide pour débutants",
+    "body": "Vue.js est un framework progressif pour construire des interfaces utilisateur. Découvrez ses concepts de base...",
+    "author": "Marie Dupont",
+    "more": "Ce guide couvre les directives, les composants et la réactivité.",
+    "image": "0ab4193e0172a40f1fc2cc2c951024a2-1701435404.jpg"
+  },
+  {
+    "id": 1002,
+    "title": "CSS moderne : Flexbox et Grid en pratique",
+    "body": "Flexbox et CSS Grid sont des outils puissants pour créer des mises en page responsives. Apprenez à les combiner...",
+    "author": "Jean Martin",
+    "more": "Exemples concrets et cas d'usage pour chaque technique.",
+    "image": "0abdf235e7f0a9abd7cbbb3becc0dac6.jpg"
+  },
+  {
+    "id": 1003,
+    "title": "JavaScript ES6 : les fonctionnalités incontournables",
+    "body": "ES6 a introduit des fonctionnalités majeures comme les classes, les promesses et les template literals...",
+    "author": "Sophie Leroy",
+    "more": "Un tour d'horizon des fonctionnalités les plus utiles.",
+    "image": "0ac33370fb3d811bc5c3c1e94a106475.jpg"
+  },
+  {
+    "id": 1004,
+    "title": "Comment optimiser les performances d'une application Vue.js",
+    "body": "Les applications Vue.js peuvent ralentir si elles ne sont pas optimisées. Voici des astuces pour les accélérer...",
+    "author": "Pierre Moreau",
+    "more": "Lazy loading, memoization et bonnes pratiques.",
+    "image": "0b0b0994d12ad343511adfbfc364256e-1665048526.jpg"
+  },
+  {
+    "id": 1005,
+    "title": "Les bonnes pratiques en UX Design pour 2025",
+    "body": "L'expérience utilisateur évolue rapidement. Découvrez les tendances et bonnes pratiques pour cette année...",
+    "author": "Élodie Lambert",
+    "more": "Accessibilité, micro-interactions et design inclusif.",
+    "image": "0b24d8469d6c1277a4acb549d97b8a25-1702107985.jpg"
+  },
+  {
+    "id": 1006,
+    "title": "Introduction à Node.js et ses modules",
+    "body": "Node.js permet d'exécuter du JavaScript côté serveur. Découvrez ses modules essentiels comme fs et http...",
+    "author": "Thomas Bernard",
+    "more": "Création d'un serveur simple et gestion des dépendances.",
+    "image": "0b34e6282e346fd3332495fd22046e15.jpg"
+  },
+  {
+    "id": 1007,
+    "title": "Les erreurs courantes en JavaScript et comment les éviter",
+    "body": "Même les développeurs expérimentés commettent des erreurs. Voici les pièges à éviter en JavaScript...",
+    "author": "Camille Petit",
+    "more": "Hoisting, scope, et gestion des erreurs asynchrones.",
+    "image": "0b7d63b41f21a38d8a26b557ec6b6433.jpg"
+  },
+  {
+    "id": 1008,
+    "title": "Vue Router : naviguer entre les pages d'une application",
+    "body": "Vue Router est la bibliothèque officielle pour gérer la navigation dans une application Vue.js...",
+    "author": "Lucie Dubois",
+    "more": "Configuration des routes, navigation dynamique et garde de navigation.",
+    "image": "0b84981a2211e54d998260151966555dfea3f1de.jpg"
+  },
+  {
+    "id": 1009,
+    "title": "Les outils indispensables pour un développeur front-end en 2025",
+    "body": "De VS Code à Figma, en passant par Git, voici les outils qui feront de vous un développeur plus productif...",
+    "author": "Antoine Girard",
+    "more": "Extensions, plugins et workflows optimisés.",
+    "image": "0b9b6d6d154e98ce34b3f2e4ef76eae9-1702673875.jpg"
+  },
+  {
+    "id": 1010,
+    "title": "Comprendre le fonctionnement des Web Components",
+    "body": "Les Web Components permettent de créer des éléments personnalisés réutilisables dans le navigateur...",
+    "author": "Claire Fontaine",
+    "more": "Custom Elements, Shadow DOM et templates HTML.",
+    "image": "0bb8852adca0be88f875bee9af0f6b3e-1703164664.jpg"
+  }
+]

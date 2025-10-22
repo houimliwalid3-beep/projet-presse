@@ -7,6 +7,11 @@ const routes = [
 		name: 'Accueil',
 		component: () => import('../page/Accueil.vue')
 	},
+	{
+		path: '/favoris',
+		name: 'Favoris',
+		component: () => import('../page/Favoris.vue')
+	},
 	// fallback - redirect unknown paths to home
 	{
 		path: '/:catchAll(.*)',

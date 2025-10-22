@@ -48,6 +48,9 @@
     </div>
 
     <!-- === AFFICHAGE DYNAMIQUE SELON LE CHOIX === -->
+
+    <h1 class="second">Article secondaire :</h1>
+    
     <div class="cartes-grille mt-4">
       <deuxColonnes v-if="choixColonnes === '2'" />
       <TroisColonnes v-else-if="choixColonnes === '3'" />
@@ -180,4 +183,14 @@ export default {
     height: auto;
   }
 }
+
+
+.second {
+  color: rgb(75, 75, 75);
+  font-size: 24px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+
 </style>

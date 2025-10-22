@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, watch } from 'vue'
 
 const Titre = 'Mon Site'
 
@@ -101,14 +101,24 @@ const colors = [
   { label: 'Rouge', value: 'red' }
 ]
 
+// Charger la couleur sauvegardée (si l'utilisateur a déjà choisi une couleur)
 const selectedFont = ref('Arial, sans-serif')
-const selectedColor = ref('black')
+const selectedColor = ref(localStorage.getItem('selectedColor') || 'black')
 const displayMode = ref('image') // 👈 Par défaut : affiche les images
 
 // ✅ Police et couleur pour tout le site
 watchEffect(() => {
   document.body.style.fontFamily = selectedFont.value
   document.body.style.color = selectedColor.value
+})
+
+// Sauvegarder la couleur choisie dans localStorage pour persistance
+watch(selectedColor, (newColor) => {
+  try {
+    localStorage.setItem('selectedColor', newColor)
+  } catch (e) {
+    // ignore localStorage errors (e.g. privacy mode)
+  }
 })
 
 // ✅ Gestion image / texte uniquement dans #principal-container

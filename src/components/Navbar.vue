@@ -2,7 +2,9 @@
   <nav class="bg-light py-4">
     <div class="container">
       <div class="row">
-        <div class="col-6 col-md-3">{{ Titre }}</div>
+        <div class="col-6 col-md-3">
+          {{ Titre }}
+        </div>
 
         <div class="col-md-6">
           <ul class="nav justify-content-center">
@@ -53,7 +55,7 @@
       </ul>
     </div>
 
-    <!-- Afficher image / texte -->
+    <!-- Afficher image / texte / par défaut -->
     <div class="dropdown d-inline-block">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDisplay" data-bs-toggle="dropdown" aria-expanded="false">
         Afficher
@@ -61,14 +63,20 @@
       <ul class="dropdown-menu" aria-labelledby="dropdownDisplay">
         <li>
           <div class="form-check ms-3">
-            <input class="form-check-input" type="radio" name="display" id="display1" value="image" v-model="displayMode">
-            <label class="form-check-label" for="display1">Images</label>
+            <input class="form-check-input" type="radio" name="display" id="displayDefault" @click="handleDisplayClick('default')">
+            <label class="form-check-label" for="displayDefault">Par défaut</label>
           </div>
         </li>
         <li>
           <div class="form-check ms-3">
-            <input class="form-check-input" type="radio" name="display" id="display2" value="text" v-model="displayMode">
-            <label class="form-check-label" for="display2">Texte</label>
+            <input class="form-check-input" type="radio" name="display" id="displayImage" @click="handleDisplayClick('image')">
+            <label class="form-check-label" for="displayImage">Images</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check ms-3">
+            <input class="form-check-input" type="radio" name="display" id="displayText" @click="handleDisplayClick('text')">
+            <label class="form-check-label" for="displayText">Texte</label>
           </div>
         </li>
       </ul>
@@ -84,8 +92,9 @@ const Titre = 'Mon Site'
 
 const links = [
   { text: 'Accueil', to: '/' },
+  { text: 'Articles', to: '/articles' },
   { text: 'Favoris', to: '/favoris' },
-  { text: 'Formulaire', href: '#' },
+  { text: 'Formulaire', to: '/Formulaire' },
   { text: 'A Propos', href: '#' }
 ]
 
@@ -101,45 +110,42 @@ const colors = [
   { label: 'Rouge', value: 'red' }
 ]
 
-// Charger la couleur sauvegardée (si l'utilisateur a déjà choisi une couleur)
+// Sélection utilisateur
 const selectedFont = ref('Arial, sans-serif')
 const selectedColor = ref(localStorage.getItem('selectedColor') || 'black')
-const displayMode = ref('image') // 👈 Par défaut : affiche les images
 
-// ✅ Police et couleur pour tout le site
+// Police et couleur pour tout le site
 watchEffect(() => {
   document.body.style.fontFamily = selectedFont.value
   document.body.style.color = selectedColor.value
 })
 
-// Sauvegarder la couleur choisie dans localStorage pour persistance
+// Sauvegarde couleur
 watch(selectedColor, (newColor) => {
-  try {
-    localStorage.setItem('selectedColor', newColor)
-  } catch (e) {
-    // ignore localStorage errors (e.g. privacy mode)
-  }
+  try { localStorage.setItem('selectedColor', newColor) } catch(e) {}
 })
 
-// ✅ Gestion image / texte uniquement dans #principal-container
-watchEffect(() => {
+// Fonction pour gérer l'affichage
+function handleDisplayClick(mode) {
   const container = document.getElementById('principal-container')
-  if (container) {
-    const images = container.querySelectorAll('img')
-    const textes = container.querySelectorAll('p, h4, h3, h2, h1, span')
+  if (!container) return
 
-    images.forEach(img => {
-      img.style.display = displayMode.value === 'image' ? 'block' : 'none'
-    })
-    textes.forEach(txt => {
-      txt.style.display = displayMode.value === 'text' ? 'block' : 'none'
-    })
+  const images = container.querySelectorAll('img')
+  const textes = container.querySelectorAll('p, span, h1, h2, h3, h4, h5, h6')
+
+  if (mode === 'image') {
+    images.forEach(img => img.style.display = 'none')
+    textes.forEach(txt => txt.style.display = 'block')
+  } else if (mode === 'text') {
+    images.forEach(img => img.style.display = 'block')
+    textes.forEach(txt => txt.style.display = 'none')
+  } else if (mode === 'default') {
+    images.forEach(img => img.style.display = 'block')
+    textes.forEach(txt => txt.style.display = 'block')
   }
-})
+}
 </script>
 
 <style scoped>
-label {
-  cursor: pointer;
-}
+label { cursor: pointer; }
 </style>

@@ -1,11 +1,15 @@
 <template>
   <nav class="bg-light py-4">
     <div class="container">
-      <div class="row">
+      <div class="row align-items-center">
+        <!-- Logo -->
         <div class="col-6 col-md-3">
-          {{ Titre }}
+          <router-link to="/">
+            <img src="/src/image/Logo_Presse_Océan.svg.png" alt="Logo" style="height: 50px;">
+          </router-link>
         </div>
 
+        <!-- Liens -->
         <div class="col-md-6">
           <ul class="nav justify-content-center">
             <li class="nav-item" v-for="(link, i) in links" :key="i">
@@ -15,19 +19,21 @@
           </ul>
         </div>
 
-        <div class="col-md-3 text-end">
-          <button class="btn btn-success">Connexion</button>
+        <!-- Bouton Connexion centré verticalement -->
+        <div class="col-md-3 d-flex justify-content-end align-items-center">
+          <router-link to="/Connexion" class="btn-connexion">
+            Connexion
+          </router-link>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Sélecteurs -->
+  <!-- Sélecteurs et compteur -->
   <div class="container mt-4">
-
     <!-- Choisir police -->
     <div class="dropdown d-inline-block me-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFont" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFont" data-bs-toggle="dropdown">
         Choisir une police
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownFont">
@@ -42,22 +48,22 @@
 
     <!-- Choisir couleur -->
     <div class="dropdown d-inline-block me-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownColor" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownColor" data-bs-toggle="dropdown">
         Choisir une couleur
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownColor">
         <li v-for="(color, i) in colors" :key="i">
           <div class="form-check ms-3">
             <input class="form-check-input" type="radio" name="color" :id="'color' + i" :value="color.value" v-model="selectedColor">
-            <label class="form-check-label" :for="'color' + i" :style="{ color: color.value, fontWeight: 'bold' }">{{ color.label }}</label>
+            <label class="form-check-label" :for="'color' + i" :style="{ color: color.value, fontWeight:'bold' }">{{ color.label }}</label>
           </div>
         </li>
       </ul>
     </div>
 
     <!-- Afficher image / texte / par défaut -->
-    <div class="dropdown d-inline-block">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDisplay" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown d-inline-block me-3">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDisplay" data-bs-toggle="dropdown">
         Afficher
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownDisplay">
@@ -82,11 +88,13 @@
       </ul>
     </div>
 
+    <!-- Bouton Réinitialiser compteur -->
+    <button class="btn  ms-3  conn-btn" @click="resetClick">Click : {{ clickCount }}</button>
   </div>
 </template>
 
 <script setup>
-import { ref, watchEffect, watch } from 'vue'
+import { ref, watchEffect, watch, onMounted } from 'vue'
 
 const Titre = 'Mon Site'
 
@@ -110,22 +118,18 @@ const colors = [
   { label: 'Rouge', value: 'red' }
 ]
 
-// Sélection utilisateur
 const selectedFont = ref('Arial, sans-serif')
 const selectedColor = ref(localStorage.getItem('selectedColor') || 'black')
 
-// Police et couleur pour tout le site
 watchEffect(() => {
   document.body.style.fontFamily = selectedFont.value
   document.body.style.color = selectedColor.value
 })
 
-// Sauvegarde couleur
 watch(selectedColor, (newColor) => {
   try { localStorage.setItem('selectedColor', newColor) } catch(e) {}
 })
 
-// Fonction pour gérer l'affichage
 function handleDisplayClick(mode) {
   const container = document.getElementById('principal-container')
   if (!container) return
@@ -144,8 +148,41 @@ function handleDisplayClick(mode) {
     textes.forEach(txt => txt.style.display = 'block')
   }
 }
+
+const clickCount = ref(parseInt(localStorage.getItem('clickCount') || '0'))
+
+function incrementClick() {
+  clickCount.value++
+  localStorage.setItem('clickCount', clickCount.value)
+}
+
+function resetClick() {
+  clickCount.value = -1
+  localStorage.setItem('clickCount', 0)
+}
+
+onMounted(() => {
+  window.addEventListener('click', incrementClick)
+})
 </script>
 
 <style scoped>
 label { cursor: pointer; }
+
+.btn-connexion {
+  background: linear-gradient(to right, #4f90ff, #b179ed);
+  border: none;
+  color: white;
+  padding: 8px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.conn-btn {
+  background: linear-gradient(to right, #97a8c7, #888888);
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
 </style>

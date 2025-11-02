@@ -33,7 +33,7 @@ function saveFavoris(arr) {
 
 function getCardDataFromEl(el) {
   if (!el) return null
-  const title = el.querySelector('h4')?.innerText?.trim() || ''
+  const title = el.querySelector('h5')?.innerText?.trim() || ''
   const text = el.querySelector('p')?.innerText?.trim() || ''
   const img = el.querySelector('img')?.getAttribute('src') || ''
   // Use a simple id combining title+img

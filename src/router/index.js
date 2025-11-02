@@ -25,6 +25,13 @@ const routes = [
 		component: () => import('../page/Formulaire.vue')
 	},
 
+
+	{
+		path: '/Connexion',
+		name: 'Connexion',
+		component: () => import('../page/Connexion.vue')
+	},
+
 	
 
 	// fallback - redirect unknown paths to home

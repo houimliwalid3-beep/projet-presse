@@ -10,7 +10,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[0])">
               <img :src="getArticleImage(articles[0])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[0].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[0].title }}</h5></div>
               <BoutonFav />
             </div>
             <div class="carte-interne" 
@@ -18,7 +18,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[1])">
               <img :src="getArticleImage(articles[1])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[1].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[1].title }}</h5></div>
               <BoutonFav />
             </div>
           </div>
@@ -34,7 +34,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[2])">
               <img :src="getArticleImage(articles[2])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[2].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[2].title }}</h5></div>
               <BoutonFav />
             </div>
             <div class="carte-interne" 
@@ -42,7 +42,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[3])">
               <img :src="getArticleImage(articles[3])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[3].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[3].title }}</h5></div>
               <BoutonFav />
             </div>
           </div>
@@ -58,7 +58,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[4])">
               <img :src="getArticleImage(articles[4])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[4].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[4].title }}</h5></div>
               <BoutonFav />
             </div>
             <div class="carte-interne" 
@@ -66,7 +66,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[5])">
               <img :src="getArticleImage(articles[5])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[5].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[5].title }}</h5></div>
               <BoutonFav />
             </div>
           </div>
@@ -75,14 +75,14 @@
 
       <!-- Carte principale 4 -->
       <div class="col-md-3">
-        <div class="card-principale p-3">
+        <div class="card-principale p-7">
           <div class="sous-cartes mt-3">
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[6]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[6])">
               <img :src="getArticleImage(articles[6])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[6].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[6].title }}</h5></div>
               <BoutonFav />
             </div>
             <div class="carte-interne" 
@@ -90,7 +90,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[7])">
               <img :src="getArticleImage(articles[7])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[7].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[7].title }}</h5></div>
               <BoutonFav />
             </div>
           </div>

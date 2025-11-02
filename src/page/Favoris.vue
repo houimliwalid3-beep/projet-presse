@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-4 fot">
     <h2>Mes Favoris</h2>
     
     <!-- Message si aucun favori -->
@@ -57,5 +57,10 @@ function retirerFavori(id) {
 .card-img-top {
   height: 180px;
   object-fit: cover;
+}
+
+.fot{
+
+  margin-bottom:220px;
 }
 </style>

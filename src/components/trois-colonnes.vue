@@ -72,7 +72,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[5])">
               <img :src="getArticleImage(articles[5])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[5].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[5].title }}</h5></div>
               <BoutonFav />
             </div>
             <!-- Carte 6 -->
@@ -81,7 +81,7 @@
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[6])">
               <img :src="getArticleImage(articles[6])" class="img-sous-carte"/>
-              <div class="contenu ms-3 flex-grow-1"><h4>{{ articles[6].title }}</h4></div>
+              <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[6].title }}</h5></div>
               <BoutonFav />
             </div>
           </div>
@@ -91,7 +91,6 @@
 
     <!-- Fenêtre d'aperçu -->
     <div v-if="hoveredArticle" class="preview-popup">
-      <img  :src="getArticleImage(hoveredArticle)" alt="Aperçu" style="width: 100%; height: auto; border-radius: 5px; margin-bottom: 10px;"/>
       <h5>{{ hoveredArticle.title }}</h5>
       <p><em>Par {{ hoveredArticle.author }}</em></p>
       <p><strong>Catégorie :</strong> {{ hoveredArticle.category }}</p>

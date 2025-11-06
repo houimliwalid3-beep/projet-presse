@@ -1,34 +1,45 @@
 <template>
   <nav class="bg-light py-4">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="d-flex align-items-center justify-content-between">
         <!-- Logo -->
-        <div class="col-6 col-md-3">
-          <router-link to="/">
-            <img src="/src/image/Logo_Presse_Océan.svg.png" alt="Logo" style="height: 50px;">
-          </router-link>
-        </div>
+        <router-link to="/">
+          <img src="/src/image/Logo_Presse_Océan.svg.png" alt="Logo" style="height: 50px;">
+        </router-link>
 
-        <!-- Liens -->
-        <div class="col-md-6">
-          <ul class="nav justify-content-center">
-            <li class="nav-item" v-for="(link, i) in links" :key="i">
-              <router-link v-if="link.to" :to="link.to" class="nav-link text-dark">{{ link.text }}</router-link>
-              <a v-else :href="link.href" class="nav-link text-dark">{{ link.text }}</a>
-            </li>
-          </ul>
-        </div>
+        <!-- Hamburger mobile -->
+        <button class="btn d-md-none" @click="menuOpen = !menuOpen">
+          ☰
+        </button>
 
-        <!-- Bouton Connexion centré verticalement -->
-        <div class="col-md-3 d-flex justify-content-end align-items-center">
-          <router-link to="/Connexion" class="btn-connexion">
+        <!-- Liens desktop -->
+        <ul class="nav justify-content-center d-none d-md-flex flex-grow-1">
+          <li class="nav-item" v-for="(link, i) in links" :key="i">
+            <router-link v-if="link.to" :to="link.to" class="nav-link text-dark">{{ link.text }}</router-link>
+            <a v-else :href="link.href" class="nav-link text-dark">{{ link.text }}</a>
+          </li>
+        </ul>
+
+        <!-- Bouton Connexion desktop -->
+        <router-link to="/Connexion" class="btn-connexion d-none d-md-block">
+          Connexion
+        </router-link>
+      </div>
+
+      <!-- Liens mobile -->
+      <ul v-if="menuOpen" class="nav flex-column mt-2 d-md-none">
+        <li class="nav-item" v-for="(link, i) in links" :key="'m'+i">
+          <router-link v-if="link.to" :to="link.to" class="nav-link text-dark">{{ link.text }}</router-link>
+          <a v-else :href="link.href" class="nav-link text-dark">{{ link.text }}</a>
+        </li>
+        <li class="nav-item mt-2">
+          <router-link to="/Connexion" class="btn-connexion w-100 text-center">
             Connexion
           </router-link>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </nav>
-
   <!-- Sélecteurs et compteur -->
   <div class="container mt-4">
     <!-- Choisir police -->
@@ -167,6 +178,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
+
+
+
+
+
+
 label { cursor: pointer; }
 
 .btn-connexion {
@@ -176,6 +194,8 @@ label { cursor: pointer; }
   padding: 8px 25px;
   border-radius: 5px;
   text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 .conn-btn {

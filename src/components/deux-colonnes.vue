@@ -10,10 +10,10 @@
                  @click="showArticle(articles[0])"
                  @mouseover="hoveredArticle = articles[0]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[0])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/vue.png" class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[0].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -23,10 +23,10 @@
                  @click="showArticle(articles[1])"
                  @mouseover="hoveredArticle = articles[1]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[1])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/flexbox.png"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <5>{{ articles[1].title }}</5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -36,10 +36,10 @@
                  @click="showArticle(articles[2])"
                  @mouseover="hoveredArticle = articles[2]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[2])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/js-fonctionnalité.jpg"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[2].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -49,10 +49,10 @@
                  @click="showArticle(articles[3])"
                  @mouseover="hoveredArticle = articles[3]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[3])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/performence.png"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[3].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -62,10 +62,10 @@
                  @click="showArticle(articles[4])"
                  @mouseover="hoveredArticle = articles[4]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[4])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/uxdesign.jpg"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[4].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -82,10 +82,10 @@
                  @click="showArticle(articles[5])"
                  @mouseover="hoveredArticle = articles[5]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[5])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/node.webp"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[5].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -95,10 +95,10 @@
                  @click="showArticle(articles[6])"
                  @mouseover="hoveredArticle = articles[6]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[6])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/erreur-js.jpeg"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[6].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -108,10 +108,10 @@
                  @click="showArticle(articles[7])"
                  @mouseover="hoveredArticle = articles[7]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[7])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/rooter.jpg" class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[7].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -121,10 +121,10 @@
                  @click="showArticle(articles[8])"
                  @mouseover="hoveredArticle = articles[8]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[8])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/frontend.webp"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[8].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -134,10 +134,10 @@
                  @click="showArticle(articles[9])"
                  @mouseover="hoveredArticle = articles[9]"
                  @mouseleave="hoveredArticle = null">
-              <img :src="getArticleImage(articles[9])" alt="photo" class="img-sous-carte" @error="onImgError"/>
+              <img src="/src/image/coponent.webp"class="image" alt="">
               <div class="contenu ms-3 flex-grow-1">
                 <h5>{{ articles[9].title }}</h5>
-                <p>Petit texte descriptif.</p>
+                
               </div>
               <BoutonFav />
             </div>
@@ -150,17 +150,12 @@
     <div v-if="hoveredArticle" class="preview-popup">
       <h5>{{ hoveredArticle.title }}</h5>
       <p><em>Par {{ hoveredArticle.author }}</em></p>
-      <p><strong>Catégorie :</strong> {{ hoveredArticle.category }}</p>
+      <img src="/src/image/flexbox.png"class="image" alt="">
       <p>{{ hoveredArticle.more }}</p>
     </div>
 
     <!-- Affichage article sélectionné -->
-    <div v-if="selectedArticle" class="mt-4">
-      <h3>A la une : {{ selectedArticle.title }}</h3>
-      <img :src="media_path" alt="illustration" class="img-fluid mb-2"/>
-      <p>{{ selectedArticle.body }}</p>
-      <button @click="hideArticle(selectedArticle)" class="btn btn-secondary">Fermer</button>
-    </div>
+   
   </div>
 </template>
 
@@ -215,7 +210,7 @@ function getArticleImage(article) {
   border-radius: 10px;
   padding: 20px;
   background-color: #f8f9fa;
-  height: 100%;
+  
 }
 
 .sous-cartes { display: flex; flex-direction: column; gap: 10px; }
@@ -254,5 +249,12 @@ function getArticleImage(article) {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   z-index: 100;
+}
+
+.image{
+  width: 75px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 </style>

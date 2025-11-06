@@ -1,20 +1,20 @@
 <template>
   <div id="principal-container" class="row container align-items-center">
+    <!-- Colonne principale avec image de fond -->
     <div class="col-md-8 colonne1">
       <p class="titre">
-        Les récentes annonces de la Maison-Blanche sur la santé de Donald Trump interpellent plusieurs médecins :
-        "S'intéressent-ils à de nouveaux symptômes ?"
+        Les frameworks CSS les plus populaires en 2025
       </p>
     </div>
 
+    <!-- Colonne secondaire avec cartes -->
     <div class="col-md-4 colonne2">
       <div class="row">
         <div class="col-md-12 sous-colonne">
           <div class="carte">
-            <img src="../image/trump.avif" alt="photo" />
+            <img src="../image/css-animation.png" alt="photo" />
             <div class="contenu">
-              <h4>Titre de la carte</h4>
-              <p>Petit texte descriptif.</p>
+              <h4>Créer des animations fluides avec CSS et JavaScript</h4>
             </div>
             <BoutonFav />
           </div>
@@ -22,10 +22,9 @@
 
         <div class="col-md-12 sous-colonne">
           <div class="carte">
-            <img src="../image/trump.avif" alt="photo" />
+            <img src="../image/react.png" alt="photo" />
             <div class="contenu">
-              <h4>Deuxième carte</h4>
-              <p>Autre texte descriptif.</p>
+              <h4>Les hooks React pour les développeurs Vue.js</h4>
             </div>
             <BoutonFav />
           </div>
@@ -44,32 +43,17 @@ export default {
 </script>
 
 <style scoped>
-
-#principal-container{
-    margin-left: 100px;
+/* Container principal */
+#principal-container {
+  margin-left: 100px;
 }
 
-.img-sous-carte {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.contenu {
-  margin-left: 10px;
-}
-
-.container {
-  margin-top: 20px;
-}
-
-/* === Colonne 1 === */
+/* Colonne 1 : image de fond avec texte */
 .colonne1 {
-  background-image: url(../image/trump.avif);
+  background-image: url(../image/framework-web.png);
+  border-radius: 5%;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   height: 350px;
   position: relative;
   color: white;
@@ -79,25 +63,23 @@ export default {
   position: absolute;
   bottom: 0;
   left: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(77, 77, 77, 0.5);
   padding: 10px;
   border-radius: 5px;
   font-size: 24px;
 }
 
-/* === Colonne 2 === */
+/* Colonne 2 : cartes */
 .colonne2 {
-  background-color: rgb(92, 115, 115);
   height: 350px;
   padding: 10px;
 }
 
-/* === Cartes === */
 .sous-colonne {
-  background-color: rgb(189, 189, 189);
   border: 1px solid black;
   border-radius: 8px;
   margin-bottom: 20px;
+  margin-left: 15px;
   padding: 10px;
 }
 
@@ -108,9 +90,8 @@ export default {
 }
 
 .carte img {
-  width: 70px;
+  width: 100px;
   height: 70px;
-  object-fit: cover;
   border-radius: 6px;
 }
 
@@ -123,21 +104,22 @@ export default {
   font-size: 16px;
 }
 
-.carte .contenu p {
-  margin: 5px 0 0;
-  font-size: 14px;
-  color: #222;
-}
-
-/* === Nouveau container 3x3 === */
-.cartes-grille {
-  margin-top: 80px;
-  background-color: #f8f7f7;
-  padding: 20px;
-}
-
-/* Responsive : image au-dessus du texte sur mobile */
+/* Responsive : sur écran < 768px */
 @media (max-width: 768px) {
+  /* Les colonnes se superposent verticalement */
+  #principal-container {
+    flex-direction: column;
+    margin-left: 0;
+    margin-bottom: 200px;
+  }
+
+  .colonne1,
+  .colonne2 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Les cartes deviennent verticales */
   .carte {
     flex-direction: column;
     align-items: flex-start;
@@ -146,6 +128,11 @@ export default {
   .carte img {
     width: 100%;
     height: auto;
+    object-fit: cover;
+  }
+
+  .sous-colonne {
+    margin-left: 0;
   }
 }
 </style>

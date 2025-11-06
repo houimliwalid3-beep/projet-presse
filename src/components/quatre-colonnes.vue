@@ -1,6 +1,7 @@
 <template>
   <div class="container mt-4">
     <div class="row g-4">
+
       <!-- Carte principale 1 -->
       <div class="col-md-3">
         <div class="card-principale p-3">
@@ -9,7 +10,7 @@
                  @mouseover="hoveredArticle = articles[0]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[0])">
-              <img :src="getArticleImage(articles[0])" class="img-sous-carte"/>
+              <img src="/src/image/vue.png" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[0].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -17,7 +18,7 @@
                  @mouseover="hoveredArticle = articles[1]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[1])">
-              <img :src="getArticleImage(articles[1])" class="img-sous-carte"/>
+              <img src="/src/image/flexbox.png" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[1].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -33,7 +34,7 @@
                  @mouseover="hoveredArticle = articles[2]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[2])">
-              <img :src="getArticleImage(articles[2])" class="img-sous-carte"/>
+              <img src="/src/image/js-fonctionnalité.jpg" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[2].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -41,7 +42,7 @@
                  @mouseover="hoveredArticle = articles[3]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[3])">
-              <img :src="getArticleImage(articles[3])" class="img-sous-carte"/>
+              <img src="/src/image/performence.png" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[3].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -57,7 +58,7 @@
                  @mouseover="hoveredArticle = articles[4]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[4])">
-              <img :src="getArticleImage(articles[4])" class="img-sous-carte"/>
+              <img src="/src/image/uxdesign.jpg" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[4].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -65,7 +66,7 @@
                  @mouseover="hoveredArticle = articles[5]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[5])">
-              <img :src="getArticleImage(articles[5])" class="img-sous-carte"/>
+              <img src="/src/image/node.webp" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[5].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -75,13 +76,13 @@
 
       <!-- Carte principale 4 -->
       <div class="col-md-3">
-        <div class="card-principale p-7">
+        <div class="card-principale p-3">
           <div class="sous-cartes mt-3">
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[6]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[6])">
-              <img :src="getArticleImage(articles[6])" class="img-sous-carte"/>
+              <img src="/src/image/erreur-js.jpeg" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[6].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -89,13 +90,14 @@
                  @mouseover="hoveredArticle = articles[7]" 
                  @mouseleave="hoveredArticle = null" 
                  @click="showArticle(articles[7])">
-              <img :src="getArticleImage(articles[7])" class="img-sous-carte"/>
+              <img src="/src/image/rooter.jpg" class="img-sous-carte"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[7].title }}</h5></div>
               <BoutonFav />
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- Fenêtre d'aperçu -->
@@ -119,10 +121,6 @@ const hoveredArticle = ref(null)
 
 function showArticle(article) { selectedArticle.value = article }
 function hideArticle(article) { selectedArticle.value = null }
-
-function getArticleImage(article) {
-  return article.image ? `./media/${article.image}` : '/src/image/trump.avif'
-}
 </script>
 
 <style scoped>

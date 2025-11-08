@@ -5,67 +5,22 @@
       <div class="col-md-6">
         <div class="card-principale p-3">
           <div class="sous-cartes mt-3">
-            <!-- Carte 1 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[0])"
-                 @mouseover="hoveredArticle = articles[0]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/vue.png" class="image" alt="">
+            <!-- Boucle sur les 5 premiers articles -->
+            <div
+              v-for="article in articles.slice(0, 5)"
+              :key="article.id"
+              class="carte-interne d-flex align-items-center mb-2 p-2"
+              
+              @mouseover="hoveredArticle = article"
+              @mouseleave="hoveredArticle = null"
+            >
+              <img
+                :src="`/src/media/${article.image}`"
+                :alt="article.title"
+                class="image"
+              />
               <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[0].title }}</h5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 2 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[1])"
-                 @mouseover="hoveredArticle = articles[1]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/flexbox.png"class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <5>{{ articles[1].title }}</5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 3 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[2])"
-                 @mouseover="hoveredArticle = articles[2]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/js-fonctionnalité.jpg"class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[2].title }}</h5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 4 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[3])"
-                 @mouseover="hoveredArticle = articles[3]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/performence.png"class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[3].title }}</h5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 5 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[4])"
-                 @mouseover="hoveredArticle = articles[4]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/uxdesign.jpg"class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[4].title }}</h5>
-                
+                <h5>{{ article.title }}</h5>
               </div>
               <BoutonFav />
             </div>
@@ -77,67 +32,22 @@
       <div class="col-md-6">
         <div class="card-principale p-3">
           <div class="sous-cartes mt-3">
-            <!-- Carte 6 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[5])"
-                 @mouseover="hoveredArticle = articles[5]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/node.webp"class="image" alt="">
+            <!-- Boucle sur les 5 suivants articles -->
+            <div
+              v-for="article in articles.slice(5, 10)"
+              :key="article.id"
+              class="carte-interne d-flex align-items-center mb-2 p-2"
+              
+              @mouseover="hoveredArticle = article"
+              @mouseleave="hoveredArticle = null"
+            >
+              <img
+                :src="`/src/media/${article.image}`"
+                :alt="article.title"
+                class="image"
+              />
               <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[5].title }}</h5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 7 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[6])"
-                 @mouseover="hoveredArticle = articles[6]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/erreur-js.jpeg"class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[6].title }}</h5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 8 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[7])"
-                 @mouseover="hoveredArticle = articles[7]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/rooter.jpg" class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[7].title }}</h5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 9 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[8])"
-                 @mouseover="hoveredArticle = articles[8]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/frontend.webp"class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[8].title }}</h5>
-                
-              </div>
-              <BoutonFav />
-            </div>
-
-            <!-- Carte 10 -->
-            <div class="carte-interne d-flex align-items-center mb-2 p-2"
-                 @click="showArticle(articles[9])"
-                 @mouseover="hoveredArticle = articles[9]"
-                 @mouseleave="hoveredArticle = null">
-              <img src="/src/image/coponent.webp"class="image" alt="">
-              <div class="contenu ms-3 flex-grow-1">
-                <h5>{{ articles[9].title }}</h5>
-                
+                <h5>{{ article.title }}</h5>
               </div>
               <BoutonFav />
             </div>
@@ -150,56 +60,24 @@
     <div v-if="hoveredArticle" class="preview-popup">
       <h5>{{ hoveredArticle.title }}</h5>
       <p><em>Par {{ hoveredArticle.author }}</em></p>
-      <img src="/src/image/flexbox.png"class="image" alt="">
       <p>{{ hoveredArticle.more }}</p>
     </div>
-
-    <!-- Affichage article sélectionné -->
-   
   </div>
 </template>
 
 <script setup>
 import BoutonFav from './boutonFav.vue'
 import ArticlesModule from '../data/articles.js'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 // Récupérer 10 articles
 const articles = ArticlesModule.data().articles.slice(0, 10)
 
-// Article sélectionné
+// Article sélectionné pour affichage détaillé
 const selectedArticle = ref(null)
 
-// Article survolé pour la mini-fenêtre
+// Article survolé pour mini-fenêtre
 const hoveredArticle = ref(null)
-
-// Méthodes pour afficher / cacher un article
-function showArticle(article) {
-  selectedArticle.value = article
-}
-function hideArticle(article) {
-  selectedArticle.value = null
-}
-
-// computed pour le media_path
-const media_path = computed(() => {
-  return selectedArticle.value ? `./media/${selectedArticle.value.image}` : ''
-})
-
-// Fallback si image ne charge pas
-function onImgError(event) {
-  const img = event?.target
-  if (!img) return
-  if (!img.dataset.fallback) {
-    img.dataset.fallback = '1'
-    img.src = '/src/image/trump.avif'
-  }
-}
-
-// Chemin image pour chaque sous-carte
-function getArticleImage(article) {
-  return article.image ? `./media/${article.image}` : '/src/image/trump.avif'
-}
 </script>
 
 <style scoped>
@@ -210,7 +88,6 @@ function getArticleImage(article) {
   border-radius: 10px;
   padding: 20px;
   background-color: #f8f9fa;
-  
 }
 
 .sous-cartes { display: flex; flex-direction: column; gap: 10px; }
@@ -228,8 +105,8 @@ function getArticleImage(article) {
 
 .carte-interne:hover { transform: scale(1.02); }
 
-.img-sous-carte {
-  width: 60px;
+.image{
+  width: 75px;
   height: 60px;
   object-fit: cover;
   border-radius: 5px;
@@ -251,10 +128,7 @@ function getArticleImage(article) {
   z-index: 100;
 }
 
-.image{
-  width: 75px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 5px;
-}
+/* <img :src="`/src/media/${hoveredArticle.image}`" class="image" :alt="hoveredArticle.title" /> */
+
+
 </style>

@@ -6,19 +6,19 @@
       <div class="col-md-3">
         <div class="card-principale p-3">
           <div class="sous-cartes mt-3">
+            <!-- Carte 0 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[0]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[0])">
-              <img src="/src/image/vue.png" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null">
+              <img :src="`/src/media/${articles[0].image}`" class="img-sous-carte" :alt="articles[0].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[0].title }}</h5></div>
               <BoutonFav />
             </div>
+            <!-- Carte 1 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[1]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[1])">
-              <img src="/src/image/flexbox.png" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null">
+              <img :src="`/src/media/${articles[1].image}`" class="img-sous-carte" :alt="articles[1].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[1].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -30,19 +30,19 @@
       <div class="col-md-3">
         <div class="card-principale p-3">
           <div class="sous-cartes mt-3">
+            <!-- Carte 2 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[2]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[2])">
-              <img src="/src/image/js-fonctionnalité.jpg" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null">
+              <img :src="`/src/media/${articles[2].image}`" class="img-sous-carte" :alt="articles[2].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[2].title }}</h5></div>
               <BoutonFav />
             </div>
+            <!-- Carte 3 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[3]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[3])">
-              <img src="/src/image/performence.png" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null">
+              <img :src="`/src/media/${articles[3].image}`" class="img-sous-carte" :alt="articles[3].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[3].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -54,19 +54,19 @@
       <div class="col-md-3">
         <div class="card-principale p-3">
           <div class="sous-cartes mt-3">
+            <!-- Carte 4 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[4]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[4])">
-              <img src="/src/image/uxdesign.jpg" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null" >
+              <img :src="`/src/media/${articles[4].image}`" class="img-sous-carte" :alt="articles[4].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[4].title }}</h5></div>
               <BoutonFav />
             </div>
+            <!-- Carte 5 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[5]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[5])">
-              <img src="/src/image/node.webp" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null" >
+              <img :src="`/src/media/${articles[5].image}`" class="img-sous-carte" :alt="articles[5].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[5].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -78,19 +78,19 @@
       <div class="col-md-3">
         <div class="card-principale p-3">
           <div class="sous-cartes mt-3">
+            <!-- Carte 6 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[6]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[6])">
-              <img src="/src/image/erreur-js.jpeg" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null">
+              <img :src="`/src/media/${articles[6].image}`" class="img-sous-carte" :alt="articles[6].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[6].title }}</h5></div>
               <BoutonFav />
             </div>
+            <!-- Carte 7 -->
             <div class="carte-interne" 
                  @mouseover="hoveredArticle = articles[7]" 
-                 @mouseleave="hoveredArticle = null" 
-                 @click="showArticle(articles[7])">
-              <img src="/src/image/rooter.jpg" class="img-sous-carte"/>
+                 @mouseleave="hoveredArticle = null">
+              <img :src="`/src/media/${articles[7].image}`" class="img-sous-carte" :alt="articles[7].title"/>
               <div class="contenu ms-3 flex-grow-1"><h5>{{ articles[7].title }}</h5></div>
               <BoutonFav />
             </div>
@@ -118,9 +118,6 @@ import { ref } from 'vue'
 const articles = ArticlesModule.data().articles
 const selectedArticle = ref(null)
 const hoveredArticle = ref(null)
-
-function showArticle(article) { selectedArticle.value = article }
-function hideArticle(article) { selectedArticle.value = null }
 </script>
 
 <style scoped>

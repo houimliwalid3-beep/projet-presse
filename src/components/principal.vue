@@ -50,7 +50,7 @@ export default {
 
 /* Colonne 1 : image de fond avec texte */
 .colonne1 {
-  background-image: url(../image/framework-web.png);
+  background-image: url(../image/framework-vs.webp);
   border-radius: 5%;
   background-size: cover;
   background-position: center;

@@ -1,4 +1,5 @@
 <template>
+
   <principal />
 
   <div class="container">

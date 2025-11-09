@@ -58,9 +58,11 @@
 
     <!-- Fenêtre d'aperçu au survol -->
     <div v-if="hoveredArticle" class="preview-popup">
+      <h5>{{ hoveredArticle.id }}</h5>
       <h5>{{ hoveredArticle.title }}</h5>
       <p><em>Par {{ hoveredArticle.author }}</em></p>
-      <p>{{ hoveredArticle.more }}</p>
+      <p><em>temps de lecture : {{ hoveredArticle.readingTime }} min</em></p>
+      <p>{{ hoveredArticle.category}}</p>
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <h1>🔍 Recherche d’articles</h1>
 
     <div class="row mt-4">
-      <!-- 🧭 COLONNE GAUCHE : FORMULAIRE DE RECHERCHE -->
+      <!-- COLONNE GAUCHE : FORMULAIRE DE RECHERCHE -->
       <aside class="col-md-4 border-end pe-4">
         <h4>Formulaire de recherche</h4>
 
@@ -45,7 +45,7 @@
         </div>
       </aside>
 
-      <!-- 📰 COLONNE DROITE : AFFICHAGE DES RÉSULTATS -->
+      <!-- COLONNE DROITE : AFFICHAGE DES RÉSULTATS -->
       <main class="col-md-8 ps-4">
         <h4>Résultats de la recherche</h4>
         <p class="text-muted">{{ filteredArticles.length }} article(s) trouvé(s)</p>
@@ -66,7 +66,7 @@
       </main>
     </div>
 
-    <!-- (🧩 FUTUR) ZONE SUPPLÉMENTAIRE : afficher un article complet ici -->
+    <!-- (FUTUR) ZONE SUPPLÉMENTAIRE : afficher un article complet ici -->
     <!-- <div class="mt-5"> ... </div> -->
   </div>
 </template>
@@ -75,19 +75,19 @@
 import { ref, computed } from 'vue'
 import ArticlesModule from '../data/articles.js'
 
-// 📰 Récupère tous les articles depuis le fichier JSON
+// Récupère tous les articles depuis le fichier JSON
 const allArticles = ArticlesModule.data().articles
 
-// 🧠 Variables liées aux choix de l’utilisateur
+// Variables liées aux choix de l’utilisateur
 const searchTitle = ref('')
 const selectedCategory = ref('')
 const selectedAuthor = ref('')
 
-// 🧾 Liste unique des catégories et des auteurs
+// Liste unique des catégories et des auteurs
 const categories = [...new Set(allArticles.map(a => a.category).filter(Boolean))]
 const authors = [...new Set(allArticles.map(a => a.author).filter(Boolean))]
 
-// 🔍 Fonction de filtrage
+// Fonction de filtrage
 const filteredArticles = computed(() => {
   return allArticles.filter(article => {
     // Filtre par catégorie

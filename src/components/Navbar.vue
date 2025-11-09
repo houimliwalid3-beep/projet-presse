@@ -1,125 +1,121 @@
 <template>
   <nav class="bg-light py-4">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-between">
-        <!-- Logo -->
-        <router-link to="/">
-          <img src="/src/image/Logo_Presse_Océan.svg.png" alt="Logo" style="height: 50px;">
-        </router-link>
+    <div class="container d-flex align-items-center justify-content-between">
+      <!-- Logo -->
+      <router-link to="/">
+        <img src="/src/image/Logo_Presse_Océan.svg.png" alt="Logo" style="height: 50px;">
+      </router-link>
 
-        <!-- Hamburger mobile -->
-        <button class="btn d-md-none" @click="menuOpen = !menuOpen">
-          ☰
-        </button>
-
-        <!-- Liens desktop -->
-        <ul class="nav justify-content-center d-none d-md-flex flex-grow-1">
-          <li class="nav-item" v-for="(link, i) in links" :key="i">
-            <router-link v-if="link.to" :to="link.to" class="nav-link text-dark">{{ link.text }}</router-link>
-            <a v-else :href="link.href" class="nav-link text-dark">{{ link.text }}</a>
-          </li>
-        </ul>
-
-        <!-- Bouton Connexion desktop -->
-        <router-link to="/Connexion" class="btn-connexion d-none d-md-block">
-          Connexion
-        </router-link>
-      </div>
-
-      <!-- Liens mobile -->
-      <ul v-if="menuOpen" class="nav flex-column mt-2 d-md-none">
-        <li class="nav-item" v-for="(link, i) in links" :key="'m'+i">
-          <router-link v-if="link.to" :to="link.to" class="nav-link text-dark">{{ link.text }}</router-link>
-          <a v-else :href="link.href" class="nav-link text-dark">{{ link.text }}</a>
-        </li>
-        <li class="nav-item mt-2">
-          <router-link to="/Connexion" class="btn-connexion w-100 text-center">
-            Connexion
-          </router-link>
+      <!-- Menu principal desktop -->
+      <ul class="nav d-none d-md-flex flex-grow-1 justify-content-center">
+        <li v-for="(link, i) in links" :key="i" class="nav-item">
+          <router-link :to="link.to" class="nav-link text-dark" 
+                       @click="() => handleClick()">{{ link.text }}</router-link>
         </li>
       </ul>
+
+      <!-- Connexion -->
+      <router-link to="/Connexion" class="btn-connexion d-none d-md-block" 
+                   @click="() => handleClick()">Connexion</router-link>
+
+      <!-- Hamburger mobile -->
+      <button class="btn d-md-none" @click="() => handleClick(() => menuOpen = !menuOpen)">☰</button>
     </div>
+
+    <!-- Menu mobile -->
+    <ul v-if="menuOpen" class="nav flex-column mt-3 d-md-none">
+      <li v-for="(link, i) in links" :key="'m'+i" class="nav-item">
+        <router-link :to="link.to" class="nav-link text-dark" 
+                     @click="() => handleClick()">{{ link.text }}</router-link>
+      </li>
+      <li class="nav-item mt-2">
+        <router-link to="/Connexion" class="btn-connexion w-100 text-center" 
+                     @click="() => handleClick()">Connexion</router-link>
+      </li>
+    </ul>
   </nav>
-  <!-- Sélecteurs et compteur -->
+
+  <!-- Options : police / couleur / affichage / compteur -->
   <div class="container mt-4">
-    <!-- Choisir police -->
+
+    <!-- Police -->
     <div class="dropdown d-inline-block me-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFont" data-bs-toggle="dropdown">
-        Choisir une police
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownFont">
-        <li v-for="(font, i) in fonts" :key="i">
-          <div class="form-check ms-3">
-            <input class="form-check-input" type="radio" name="font" :id="'font' + i" :value="font.value" v-model="selectedFont">
-            <label class="form-check-label" :for="'font' + i" :style="{ fontFamily: font.value }">{{ font.label }}</label>
-          </div>
+      <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Police</button>
+      <ul class="dropdown-menu">
+        <li v-for="f in fonts" :key="f.value">
+          <label class="dropdown-item">
+            <input type="radio" :value="f.value" v-model="selectedFont"
+                   @click="() => handleClick(() => applyFont(f.value))" />
+            <span :style="{ fontFamily: f.value }">{{ f.label }}</span>
+          </label>
         </li>
       </ul>
     </div>
 
-    <!-- Choisir couleur -->
+    <!-- Couleur -->
     <div class="dropdown d-inline-block me-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownColor" data-bs-toggle="dropdown">
-        Choisir une couleur
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownColor">
-        <li v-for="(color, i) in colors" :key="i">
-          <div class="form-check ms-3">
-            <input class="form-check-input" type="radio" name="color" :id="'color' + i" :value="color.value" v-model="selectedColor">
-            <label class="form-check-label" :for="'color' + i" :style="{ color: color.value, fontWeight:'bold' }">{{ color.label }}</label>
-          </div>
+      <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Couleur</button>
+      <ul class="dropdown-menu">
+        <li v-for="c in colors" :key="c.value">
+          <label class="dropdown-item">
+            <input type="radio" :value="c.value" v-model="selectedColor"
+                   @click="() => handleClick(() => applyColor(c.value))" />
+            <span :style="{ color: c.value, fontWeight: 'bold' }">{{ c.label }}</span>
+          </label>
         </li>
       </ul>
     </div>
 
-    <!-- Afficher image / texte / par défaut -->
+    <!-- Affichage -->
     <div class="dropdown d-inline-block me-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDisplay" data-bs-toggle="dropdown">
-        Afficher
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownDisplay">
+      <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Afficher</button>
+      <ul class="dropdown-menu">
         <li>
-          <div class="form-check ms-3">
-            <input class="form-check-input" type="radio" name="display" id="displayDefault" @click="handleDisplayClick('default')">
-            <label class="form-check-label" for="displayDefault">Par défaut</label>
-          </div>
+          <label class="dropdown-item">
+            <input type="radio" name="display" 
+                   @click="() => handleClick(() => setDisplayMode('default'))" 
+                   :checked="displayMode==='default'" /> Par défaut
+          </label>
         </li>
         <li>
-          <div class="form-check ms-3">
-            <input class="form-check-input" type="radio" name="display" id="displayImage" @click="handleDisplayClick('image')">
-            <label class="form-check-label" for="displayImage">Images</label>
-          </div>
+          <label class="dropdown-item">
+            <input type="radio" name="display" 
+                   @click="() => handleClick(() => setDisplayMode('image'))" 
+                   :checked="displayMode==='image'" /> Images
+          </label>
         </li>
         <li>
-          <div class="form-check ms-3">
-            <input class="form-check-input" type="radio" name="display" id="displayText" @click="handleDisplayClick('text')">
-            <label class="form-check-label" for="displayText">Texte</label>
-          </div>
+          <label class="dropdown-item">
+            <input type="radio" name="display" 
+                   @click="() => handleClick(() => setDisplayMode('text'))" 
+                   :checked="displayMode==='text'" /> Texte
+          </label>
         </li>
       </ul>
     </div>
 
-    <!-- Bouton Réinitialiser compteur -->
-    <button class="btn  ms-3  conn-btn" @click="resetClick">Click : {{ clickCount }}</button>
+    <!-- Compteur -->
+    <button class="btn conn-btn ms-3" @click="() => handleClick(() => clickCount = 0)">
+      Click : {{ clickCount }}
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref, watchEffect, watch, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
-const Titre = 'Mon Site'
-
+// --- Données ---
 const links = [
   { text: 'Accueil', to: '/' },
   { text: 'Articles', to: '/articles' },
   { text: 'Favoris', to: '/favoris' },
   { text: 'Formulaire', to: '/Formulaire' },
-  { text: 'A Propos', href: '#' }
+  { text: 'A Propos', to: '/Apropos' }
 ]
 
 const fonts = [
   { label: 'Arial', value: 'Arial, sans-serif' },
-  { label: 'Courier New', value: '"Courier New", monospace' },
+  { label: 'Consolas', value: 'Consolas, monospace' },
   { label: 'Times New Roman', value: '"Times New Roman", serif' }
 ]
 
@@ -129,79 +125,72 @@ const colors = [
   { label: 'Rouge', value: 'red' }
 ]
 
-const selectedFont = ref('Arial, sans-serif')
-const selectedColor = ref(localStorage.getItem('selectedColor') || 'black')
+// --- États ---
+const menuOpen = ref(false)
+const selectedFont = ref(localStorage.getItem('font') || 'Arial, sans-serif')
+const selectedColor = ref(localStorage.getItem('color') || 'black')
+const displayMode = ref(localStorage.getItem('displayMode') || 'default')
+const clickCount = ref(parseInt(localStorage.getItem('clicks') || '0'))
 
-watchEffect(() => {
-  document.body.style.fontFamily = selectedFont.value
-  document.body.style.color = selectedColor.value
-})
+// --- Sauvegarde automatique ---
+watch(selectedFont, v => { document.body.style.fontFamily = v; localStorage.setItem('font', v) }, { immediate: true })
+watch(selectedColor, v => { document.body.style.color = v; localStorage.setItem('color', v) }, { immediate: true })
+watch(displayMode, v => localStorage.setItem('displayMode', v))
+watch(clickCount, v => localStorage.setItem('clicks', v))
 
-watch(selectedColor, (newColor) => {
-  try { localStorage.setItem('selectedColor', newColor) } catch(e) {}
-})
+// sert au compteur 
+function handleClick(action) {
+  clickCount.value++
 
-function handleDisplayClick(mode) {
+  // remettre a zero le compteur 
+  if (action) action()
+}
+
+// --- Fonctions pour appliquer les changements ---
+function applyFont(f) {
+  selectedFont.value = f
+}
+
+function applyColor(c) {
+  selectedColor.value = c
+}
+
+// sert a afficher image/texte/les deux
+function setDisplayMode(mode) {
+  displayMode.value = mode
   const container = document.getElementById('principal-container')
   if (!container) return
-
-  const images = container.querySelectorAll('img')
-  const textes = container.querySelectorAll('p, span, h1, h2, h3, h4, h5, h6')
-
-  if (mode === 'image') {
-    images.forEach(img => img.style.display = 'none')
-    textes.forEach(txt => txt.style.display = 'block')
+  const imgs = container.querySelectorAll('img')
+  const texts = container.querySelectorAll('p, span, h1, h2, h3, h4, h5, h6')
+  if (mode === 'default') {
+    imgs.forEach(i => i.style.display = 'block')
+    texts.forEach(t => t.style.display = 'block')
+  } else if (mode === 'image') {
+    imgs.forEach(i => i.style.display = 'block')
+    texts.forEach(t => t.style.display = 'none')
   } else if (mode === 'text') {
-    images.forEach(img => img.style.display = 'block')
-    textes.forEach(txt => txt.style.display = 'none')
-  } else if (mode === 'default') {
-    images.forEach(img => img.style.display = 'block')
-    textes.forEach(txt => txt.style.display = 'block')
+    imgs.forEach(i => i.style.display = 'none')
+    texts.forEach(t => t.style.display = 'block')
   }
 }
-
-const clickCount = ref(parseInt(localStorage.getItem('clickCount') || '0'))
-
-function incrementClick() {
-  clickCount.value++
-  localStorage.setItem('clickCount', clickCount.value)
-}
-
-function resetClick() {
-  clickCount.value = -1
-  localStorage.setItem('clickCount', 0)
-}
-
-onMounted(() => {
-  window.addEventListener('click', incrementClick)
-})
 </script>
 
 <style scoped>
-
-
-
-
-
-
-
 label { cursor: pointer; }
 
 .btn-connexion {
   background: linear-gradient(to right, #4f90ff, #b179ed);
-  border: none;
   color: white;
+  border: none;
   padding: 8px 25px;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block;
-  text-align: center;
 }
 
 .conn-btn {
-  background: linear-gradient(to right, #97a8c7, #888888);
-  border: none;
+  background: linear-gradient(to right, #97a8c7, #888);
   color: white;
+  border: none;
   padding: 8px 20px;
   border-radius: 5px;
 }

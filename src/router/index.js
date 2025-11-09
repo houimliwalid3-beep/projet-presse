@@ -32,6 +32,12 @@ const routes = [
 		component: () => import('../page/Connexion.vue')
 	},
 
+	{
+		path: '/Apropos',
+		name: 'Apropos',
+		component: () => import('../page/Apropos.vue')
+	},
+
 	
 
 	// fallback - redirect unknown paths to home

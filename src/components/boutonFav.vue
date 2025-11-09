@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-3">
     <div class="text-end">
-      <button class="btn btn-light border-0" @click="toggleFavori($event)">
+      <button ref="btn" class="btn btn-light border-0" @click="toggleFavori">
         <i :class="heartClass"></i>
       </button>
     </div>
@@ -9,103 +9,54 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-// État du cœur (favori ou non)
 const isFavori = ref(false)
+const btn = ref(null)
 
-// Classe dynamique du cœur
-const heartClass = computed(() => {
-  return isFavori.value ? 'fas fa-heart text-danger' : 'far fa-heart text-dark'
-})
+// Classe du cœur (plein ou vide)
+const heartClass = computed(() =>
+  isFavori.value ? 'fas fa-heart text-danger' : 'far fa-heart text-dark'
+)
 
-function readFavoris() {
-  try {
-    return JSON.parse(localStorage.getItem('favoris') || '[]')
-  } catch (e) {
-    return []
-  }
-}
+// Lecture / écriture du localStorage
+const readFavoris = () => JSON.parse(localStorage.getItem('favoris') || '[]')
+const saveFavoris = arr => localStorage.setItem('favoris', JSON.stringify(arr))
 
-function saveFavoris(arr) {
-  localStorage.setItem('favoris', JSON.stringify(arr))
-}
-
-function getCardDataFromEl(el) {
-  if (!el) return null
+// Récupère les infos de la carte parente
+function getCardData(el) {
   const title = el.querySelector('h5')?.innerText?.trim() || ''
   const text = el.querySelector('p')?.innerText?.trim() || ''
   const img = el.querySelector('img')?.getAttribute('src') || ''
-  // Use a simple id combining title+img
-  const id = `${title}::${img}`
-  return { id, title, text, img }
+  return { id: `${title}::${img}`, title, text, img }
 }
 
-function updateIsFavori() {
-  // find nearest .carte-interne from this button
-  const el = buttonEl?.closest('.carte-interne')
-  const data = getCardDataFromEl(el)
-  if (!data) return
-  const arr = readFavoris()
-  isFavori.value = arr.some(i => i.id === data.id)
-}
+// Ajoute ou retire des favoris
+function toggleFavori() {
+  const el = btn.value?.closest('.carte-interne')
+  if (!el) return
+  const data = getCardData(el)
 
-let buttonEl = null
+  let favoris = readFavoris()
+  const existe = favoris.some(i => i.id === data.id)
 
-function toggleFavori(event) {
-  // locate the card element from the clicked button
-  buttonEl = event.currentTarget
-  const el = buttonEl.closest('.carte-interne')
-  const data = getCardDataFromEl(el)
-  if (!data) return
-
-  const arr = readFavoris()
-  const exists = arr.some(i => i.id === data.id)
-  if (exists) {
-    const filtered = arr.filter(i => i.id !== data.id)
-    saveFavoris(filtered)
+  if (existe) {
+    favoris = favoris.filter(i => i.id !== data.id)
     isFavori.value = false
   } else {
-    arr.push(data)
-    saveFavoris(arr)
+    favoris.push(data)
     isFavori.value = true
   }
 
-  // notify other components (e.g., Favoris page or other buttons) to refresh
-  window.dispatchEvent(new CustomEvent('favoris-updated'))
-}
-
-function onFavorisUpdated() {
-  updateIsFavori()
+  saveFavoris(favoris)
 }
 
 onMounted(() => {
-  // try to bind to closest existing button element for initial state
-  // (buttonEl will be set on first click as well)
-  // find any element in this component's root
-  // Vue's <script setup> doesn't expose root, so use a short timeout to query by observing the DOM
-  setTimeout(() => {
-    // find a button inside this component instance by searching all buttons with far/fa-heart classes
-    // but safer: find the last button element inside the document which matches this component by walking from the end
-    // We'll attempt to locate a button near an h4 in the same container
-    const allButtons = Array.from(document.querySelectorAll('button'))
-    for (const b of allButtons) {
-      const parent = b.closest('.carte-interne')
-      if (parent && parent.querySelector('h4')) {
-        // Heuristic: choose the first matching button that hasn't got data-fav-initialized
-        if (!b.dataset.favInitialized) {
-          b.dataset.favInitialized = '1'
-        }
-      }
-    }
-    updateIsFavori()
-  }, 0)
-
-  window.addEventListener('favoris-updated', onFavorisUpdated)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('favoris-updated', onFavorisUpdated)
+  const el = btn.value?.closest('.carte-interne')
+  if (!el) return
+  const data = getCardData(el)
+  const favoris = readFavoris()
+  isFavori.value = favoris.some(i => i.id === data.id)
 })
 </script>
 

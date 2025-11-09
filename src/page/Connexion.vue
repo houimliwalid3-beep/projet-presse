@@ -9,44 +9,40 @@
       <form @submit.prevent="handleLogin">
         <!-- Email -->
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
           <input 
             type="email" 
-            id="email" 
-            class="form-control" 
             v-model="email" 
             placeholder="Votre email" 
+            class="form-control" 
             required
           >
         </div>
 
         <!-- Mot de passe -->
         <div class="mb-3">
-          <label for="password" class="form-label">Mot de passe</label>
           <input 
             type="password" 
-            id="password" 
-            class="form-control" 
             v-model="password" 
             placeholder="Votre mot de passe" 
+            class="form-control" 
             required
           >
         </div>
 
         <!-- Se souvenir de moi -->
         <div class="form-check mb-3">
-          <input class="form-check-input" type="checkbox" id="remember" v-model="rememberMe">
+          <input type="checkbox" v-model="rememberMe" class="form-check-input" id="remember">
           <label class="form-check-label" for="remember">Se souvenir de moi</label>
         </div>
 
         <!-- Bouton connexion -->
         <div class="d-grid mb-3">
-          <button class="btn btn-primary btn-lg" type="submit">Se connecter</button>
+          <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
         </div>
 
         <!-- Lien mot de passe oublié -->
         <div class="text-center">
-          <a href="#" class="text-decoration-none text-info">Mot de passe oublié ?</a>
+          <a href="#" class="text-info text-decoration-none">Mot de passe oublié ?</a>
         </div>
       </form>
     </div>
@@ -61,24 +57,17 @@ const email = ref('')
 const password = ref('')
 const rememberMe = ref(false)
 
-// Fonction connexion
+// Fonction login (frontend seulement)
 function handleLogin() {
   if (!email.value || !password.value) {
     alert("Veuillez remplir tous les champs !")
     return
   }
-
-  // Ici tu peux ajouter ton API call pour authentification
-  console.log("Email:", email.value)
-  console.log("Password:", password.value)
-  console.log("Se souvenir:", rememberMe.value)
-
-  alert("Connexion réussie ! (simulation)")
+  alert(`Email: ${email.value}\nMot de passe: ${password.value}\nSe souvenir: ${rememberMe.value}`)
 }
 </script>
 
 <style scoped>
-/* Page */
 .login-page {
   min-height: 100vh;
   background: linear-gradient(to right, #b9b9b9, #f0f5ff);
@@ -86,15 +75,13 @@ function handleLogin() {
   margin-top: 50px;
 }
 
-/* Carte */
 .login-card {
-  width: 100%;
   max-width: 400px;
+  width: 100%;
   border-radius: 15px;
   background-color: #ffffffcc;
 }
 
-/* Titres et textes */
 .login-card h2 {
   font-weight: 700;
 }
@@ -103,7 +90,6 @@ function handleLogin() {
   font-size: 0.9rem;
 }
 
-/* Bouton */
 .btn-primary {
   background: linear-gradient(to right, #2575fc, #6a11cb);
   border: none;
@@ -113,7 +99,6 @@ function handleLogin() {
   background: linear-gradient(to right, #6a11cb, #2575fc);
 }
 
-/* Lien */
 a.text-info:hover {
   text-decoration: underline;
 }
